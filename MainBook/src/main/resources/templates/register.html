@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Register')}">
+<body class="background-main">
+<header th:replace="fragments/navbar :: navbar"></header>
+<main class="w-100 h-100">
+	<section class="d-flex justify-content-center align-items-center">
+		<div class="d-flex border rounded-3 p-5 gap-3 align-items-center">
+			<div>
+				<form action="/register" id="formRegister"  method="post" class="d-flex flex-column gap-2 p-2">
+					<h3 class="text-light">Registre-se:</h3>
+					<p class="text-light">Registre-se para explorar esse universo literário!</p>
+					<div class="row" >
+					  <div class="col">
+						 <label class="text-light">Username</label>
+					    <input type="text" th:field="${register.username}" th:value="${register.username}"  class="form-control" placeholder="Insira o username"  required name="username">
+					    <div id="erroUsername" >
+						</div>
+					  </div>
+					  <div class="col">
+						  <label class="text-light">Email</label>
+					    <input id="email" type="email" th:field="${register.email}" class="form-control"  placeholder="email@email.com" aria-label="Last name" required>
+					    <div id="erroEmail" >
+						</div>
+					  </div>
+					</div>
+					<div class="row">
+					  <div class="col">
+						<label class="text-light">Password</label>
+					    <input type="text" id="password" th:field="${register.password}" class="form-control"  placeholder="Insira a senha"  required>
+					  </div>
+					  <div class="col">
+						<label class="text-light">Password Confirm</label>
+					    <input type="password" th:field="${register.passwordConfirm}" class="form-control" placeholder="Repita a senha" required>
+					    <div id="erroPasswordConfirm" >
+						</div>
+					  </div>
+					</div>
+					
+					<div class="d-flex w-100 justify-content-end p-2">
+						<button id="btn-register"  type="submit" class="btn border text-light" disabled>Registrar-se</button>
+					</div>
+					
+					 <p class="text-light">Você já tem conta de acesso? Acesse por <a href="/login">Aqui.</a></p>
+				</form>
+			</div>
+			<div>
+				<img src="http://localhost:8080/images/mainbook2.jpg" class="rounded-3" style="width: 450px;"/>
+			</div>
+		</div>
+	</section>
+</main>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<script src="http://localhost:8080/Js/register.js"></script>
+</body>
+</html>

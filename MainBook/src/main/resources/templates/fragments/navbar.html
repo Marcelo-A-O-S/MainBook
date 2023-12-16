@@ -1,0 +1,42 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<header th:fragment="navbar">
+	<nav class="navbar navbar-dark bg-transparent">
+	  <div class="container-fluid d-flex justify-content-between">
+		 <a class="navbar-brand" href="/">MainBook</a>
+		 <div class="d-flex gap-1">
+			 <button class="btn border">
+				 <a class="text-light" href="/login" style="text-decoration: none;">Log In</a>
+			 </button>
+			 <button class="btn border">
+				 <a class="text-light" href="/register" style="text-decoration: none;">Sign Up</a>
+			 </button>
+			<button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		 </div>
+	   
+	  </div>
+	</nav>
+
+<div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header bg-dark">
+    <a class="navbar-brand text-light" href="/">MainBook</a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body bg-dark opacity-50">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="text-light nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="text-light nav-link active" aria-current="page" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="text-light nav-link active" aria-current="page" href="/team">Team</a>
+        </li>
+     </ul>
+  </div>
+</div>
+</header>
+</html>

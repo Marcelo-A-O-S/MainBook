@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Home')}">
+	
+</head>
+<body class="background-main">
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+<main class="w-100 vh-100">
+	<section class="d-flex justify-content-around align-items-center p-5">
+		<div class="d-flex flex-column">
+			<h1 class="text-light font-pacifico">Main Book</h1>
+			<p class="d-flex text-light font-text-pacifico">Bem-vindo ao universo literário da Main Book, se aventure nesse universo</p>
+			<p class="d-flex text-light font-text-pacifico">explorando varios catalogos da nossa plataforma</p>
+		</div>
+		<div>
+			<img src="http://localhost:8080/images/mainbook5.jpg" class="img-fluid rounded-circle" style="width: 500px;"/>
+		</div>
+	</section>
+</main>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

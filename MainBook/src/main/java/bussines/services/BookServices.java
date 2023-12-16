@@ -1,26 +1,26 @@
-package bussines.services;
+package Bussines.Services;
 
 import java.util.List;
+
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bussines.repositories.interfaces.IBookRepository;
-import bussines.services.interfaces.IBookServices;
-import domain.models.Book;
-
+import Bussines.Repositories.Interfaces.IBookRepository;
+import Bussines.Services.Interfaces.IBookServices;
+import Domain.Models.Book;
 @Service
 public class BookServices implements IBookServices{
-	private IBookRepository bookRepository;
-	@Autowired
+	private  IBookRepository bookRepository;
+	
+	
 	public BookServices(IBookRepository _bookRepository) {
 		this.bookRepository = _bookRepository;
 	}
 	@Override
 	public void salvar(Book entidade) {
 		// TODO Auto-generated method stub
-		if(entidade.codigo.equals(0)) {
+		if(entidade.codigo == 0) {
 			this.bookRepository.save(entidade);
 		}else {
 			this.bookRepository.save(entidade);
@@ -28,7 +28,7 @@ public class BookServices implements IBookServices{
 		
 	}
 	@Override
-	public Book buscarPorId(Long id) {
+	public Book buscarPorId(Integer id) {
 		// TODO Auto-generated method stub
 		Optional<Book> book = this.bookRepository.findById(id);
 		return book.get();
@@ -46,7 +46,7 @@ public class BookServices implements IBookServices{
 		
 	}
 	@Override
-	public void deletarPorId(Long id) {
+	public void deletarPorId(Integer id) {
 		// TODO Auto-generated method stub
 		this.bookRepository.deleteById(id);
 	}

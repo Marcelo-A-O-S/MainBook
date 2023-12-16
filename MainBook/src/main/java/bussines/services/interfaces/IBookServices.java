@@ -1,6 +1,6 @@
-package bussines.services.interfaces;
+package Bussines.Services.Interfaces;
 
-import domain.models.Book;
+import Domain.Models.Book;
 
 public interface IBookServices extends IServices<Book>{
 

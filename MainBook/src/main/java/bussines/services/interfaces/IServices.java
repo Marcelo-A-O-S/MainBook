@@ -1,13 +1,13 @@
-package bussines.services.interfaces;
+package Bussines.Services.Interfaces;
 
 import java.util.List;
 
 public interface IServices<T>{
 	void salvar(T entidade);
-	T buscarPorId(Long id);
+	T buscarPorId(Integer id);
 	List<T> listar();
 	void deletar(T entidade);
-	void deletarPorId(Long id);
+	void deletarPorId(Integer id);
 	void atualzar(T entidade);
 	
 }
