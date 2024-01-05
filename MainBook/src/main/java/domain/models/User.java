@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
@@ -29,6 +30,7 @@ public class User implements UserDetails{
 	public String userName;
 	public String email;
 	public String password;
+	public boolean enable;
 	@ManyToMany
 	@JoinTable(
 			name = "user_roles",
@@ -37,10 +39,21 @@ public class User implements UserDetails{
 			)
 	public List<Role> roles = new ArrayList<Role>();
 	public User(Integer id, String userName, String email, String password) {
-		Id = id;
+		this.Id = id;
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
+	}
+	public User(Integer id, String userName, String email, String password, boolean enable, Role role) {
+		this.Id = id;
+		this.userName = userName;
+		this.email = email;
+		this.enable = enable;
+		this.password = password;
+		this.roles.add(role);
+	}
+	public User() {
+		
 	}
 	public Integer getId() {
 		return Id;
@@ -63,34 +76,53 @@ public class User implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return userName;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setEnable(boolean isEnable) {
+		this.enable = isEnable;
 	}
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.enable;
 	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	public void setRole(Role role) {
+		this.roles.add(role);
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		List<GrantedAuthority> listAuthorities = new ArrayList<GrantedAuthority>();
+		List<Role> roles = this.getRoles();
+		for(Role role: roles) {
+			listAuthorities.add(new SimpleGrantedAuthority("ROLE_"+ role.getRoleName()));
+		}
+		return listAuthorities;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.userName;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 }

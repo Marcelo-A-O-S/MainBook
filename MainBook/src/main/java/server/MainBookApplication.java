@@ -1,6 +1,7 @@
 package Server;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import Bussines.Services.BookServices;
 import Bussines.Services.CategoryServices;
@@ -18,6 +20,7 @@ import Bussines.Services.RoleServices;
 import Bussines.Services.UserServices;
 import Domain.Models.Category;
 import Domain.Models.Role;
+import Domain.Models.User;
 
 @EnableJpaRepositories(basePackages = "Bussines.Repositories.Interfaces")
 @EntityScan(basePackages = {"Domain.Models", "Bussines.Services", "Bussines.Repositories.Interfaces"})
@@ -30,7 +33,8 @@ public class MainBookApplication{
 	}
 
 	@Bean
-	public CommandLineRunner Initialize(CategoryServices cs, RoleServices rs) {
+	public CommandLineRunner Initialize(
+			CategoryServices cs, RoleServices rs, UserServices us) {
 		return args ->{
 			List<Category> cat = cs.listar();
 			if(cat.size() == 0) {
@@ -68,6 +72,20 @@ public class MainBookApplication{
 					rs.salvar(role);
 				}
 			}
+			List<User> userlist = us.listar();
+			if(userlist.size() == 0) {
+				List<User> users = new ArrayList<User>();
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				Role roleAdmin = rs.findByRoleName("ADMIN");
+				Role roleUser = rs.findByRoleName("USER");
+				users.add(new User(0,"usuario","usuario@usuario.com",passwordEncoder.encode("123"), true, roleUser));
+				users.add(new User(0,"usuarioDesativado","usuarioDesativado@usuario.com",passwordEncoder.encode("123"), false, roleUser));
+				users.add(new User(0,"admin", "admin@admin.com",passwordEncoder.encode("123"), true, roleAdmin));
+				for(User user:users) {
+					us.salvar(user);
+				}
+			}
+					
 			
 		};
 	}

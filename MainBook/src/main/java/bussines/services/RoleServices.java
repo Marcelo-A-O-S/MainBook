@@ -52,5 +52,10 @@ public class RoleServices implements IRoleServices {
 		// TODO Auto-generated method stub
 		this.roleRepository.save(entidade);
 	}
+	@Override
+	public Role findByRoleName(String roleName) {
+		// TODO Auto-generated method stub
+		return this.roleRepository.findByRoleName(roleName);
+	}
 
 }

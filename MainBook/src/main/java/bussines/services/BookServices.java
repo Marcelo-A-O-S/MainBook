@@ -4,6 +4,9 @@ import java.util.List;
 
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import Bussines.Repositories.Interfaces.IBookRepository;
@@ -12,8 +15,6 @@ import Domain.Models.Book;
 @Service
 public class BookServices implements IBookServices{
 	private  IBookRepository bookRepository;
-	
-	
 	public BookServices(IBookRepository _bookRepository) {
 		this.bookRepository = _bookRepository;
 	}

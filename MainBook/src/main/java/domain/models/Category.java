@@ -18,9 +18,6 @@ import lombok.Data;
 @Data
 
 public class Category {
-
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer Id;

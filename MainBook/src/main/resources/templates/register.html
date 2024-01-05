@@ -2,12 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/head :: head('Register')}">
 <body class="background-main">
-<header th:replace="fragments/navbar :: navbar"></header>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
 <main class="w-100 h-100">
 	<section class="d-flex justify-content-center align-items-center">
 		<div class="d-flex border rounded-3 p-5 gap-3 align-items-center">
 			<div>
 				<form action="/register" id="formRegister"  method="post" class="d-flex flex-column gap-2 p-2">
+					<div th:if="${msgError}" class="alert alert-danger">
+						<span th:text="${msgError}"></span>
+					</div>
 					<h3 class="text-light">Registre-se:</h3>
 					<p class="text-light">Registre-se para explorar esse universo literário!</p>
 					<div class="row" >

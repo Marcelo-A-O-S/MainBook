@@ -2,8 +2,11 @@
 
 .background-main{
 	background-color:#126c87;
+	color: white;
 	
-	
+}
+.color-white{
+	color: white;
 }
 .text-red{
 	color: red;

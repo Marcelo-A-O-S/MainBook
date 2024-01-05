@@ -24,6 +24,9 @@ public class Role {
 		this.Id = id;
 		this.roleName = _roleName;
 	}
+	public Role() {
+		
+	}
 	public Integer getId() {
 		return this.Id;
 	}
