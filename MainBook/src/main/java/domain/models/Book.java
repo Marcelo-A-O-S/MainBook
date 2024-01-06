@@ -16,6 +16,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "books")
 public class Book {
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer codigo;
@@ -59,5 +61,11 @@ public class Book {
 	}
 	public void setIsbn(String isbn) {
 		Isbn = isbn;
+	}
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 }

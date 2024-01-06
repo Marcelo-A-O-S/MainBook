@@ -56,4 +56,19 @@ public class BookServices implements IBookServices{
 		// TODO Auto-generated method stub
 		this.bookRepository.save(entidade);
 	}
+	@Override
+	public Book buscarPorAutor(String autor) {
+		// TODO Auto-generated method stub
+		return this.bookRepository.findByNomeAutor(autor);
+	}
+	@Override
+	public Book buscarPorIsbn(String isbn) {
+		// TODO Auto-generated method stub
+		return this.bookRepository.findByISBN(isbn);
+	}
+	@Override
+	public Book buscarPorTitulo(String titulo) {
+		// TODO Auto-generated method stub
+		return this.bookRepository.findByTituloLivro(titulo);
+	}
 }

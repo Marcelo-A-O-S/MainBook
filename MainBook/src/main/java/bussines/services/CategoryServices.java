@@ -23,7 +23,6 @@ public class CategoryServices implements ICategoryServices {
 		}else {
 			this.categoryRepository.save(entidade);
 		}
-		
 	}
 
 	@Override
@@ -54,6 +53,11 @@ public class CategoryServices implements ICategoryServices {
 	public void atualzar(Category entidade) {
 		// TODO Auto-generated method stub
 		this.categoryRepository.save(entidade);
+	}
+	@Override
+	public Category buscarPorNomeCategoria(String nomeCategoria) {
+		// TODO Auto-generated method stub
+		return this.categoryRepository.findByNameCategory(nomeCategoria);
 	}
 
 }
