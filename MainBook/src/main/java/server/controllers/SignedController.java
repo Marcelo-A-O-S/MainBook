@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import Bussines.Services.CategoryServices;
 import Domain.Models.Book;
 import Domain.Models.Category;
 import Server.ViewModels.BookView;
+import ch.qos.logback.core.pattern.parser.Parser;
 
 @Controller
 @RequestMapping("/signed")
@@ -32,6 +35,49 @@ public class SignedController {
 	@GetMapping("books")
 	public ModelAndView Books() {
 		ModelAndView mv = new ModelAndView();
+		List<Book> books = bs.listar();
+		mv.addObject("books", books);
+		mv.setViewName("Signed/Books/index");
+		return mv;
+	}
+	@GetMapping("info")
+	public ModelAndView InfoBook(@RequestParam(required = true) Integer param) {
+		ModelAndView mv = new ModelAndView();
+		Book infoBook = bs.buscarPorId(param);
+		if(infoBook != null) {
+			mv.addObject("infoBook", infoBook);
+			mv.setViewName("Signed/Books/info");
+			return mv;
+		}
+		mv.addObject("erro", "Não existe livro com essa identificação");
+		mv.setViewName("Signed/Books/index");
+		return mv;
+	}
+	@DeleteMapping("delete")
+	public ModelAndView DeleteBookParamId(@RequestParam(required = true) Integer param) {
+		ModelAndView mv = new ModelAndView();
+		Book book = bs.buscarPorId(param);
+		if(book != null) {
+			bs.deletar(book);
+			mv.addObject("sucess", "Deletado com sucesso!");
+			mv.setViewName("Signed/Books/index");
+			return mv;
+		}
+		mv.addObject("erro", "Não existe livro com essa identificação");
+		mv.setViewName("Signed/Books/index");
+		return mv;
+	}
+	@DeleteMapping("delete/{id}")
+	public ModelAndView DeleteBookPathId(@PathVariable(required = true) Integer id) {
+		ModelAndView mv = new ModelAndView();
+		Book book = bs.buscarPorId(id);
+		if(book != null) {
+			bs.deletar(book);
+			mv.addObject("sucess", "Deletado com sucesso!");
+			mv.setViewName("Signed/Books/index");
+			return mv;
+		}
+		mv.addObject("erro", "Não existe livro com essa identificação");
 		mv.setViewName("Signed/Books/index");
 		return mv;
 	}
@@ -40,7 +86,6 @@ public class SignedController {
 		ModelAndView mv = new ModelAndView();
 		List<Category> categories = cs.listar();
 		BookView bv = new BookView();
-
 		mv.addObject("bookModel", bv);
 		mv.addObject("categories",categories);
 		mv.setViewName("Signed/Books/create");

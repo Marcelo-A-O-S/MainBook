@@ -13,6 +13,11 @@ class InpuIsbn extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
+		if(this.input.length > 0){
+			this.valid = true;
+			verifyInputs()
+		}
+		
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -71,6 +76,10 @@ class InputTituloLivro extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
+		if(this.input.length > 0){
+			this.valid = true;
+			verifyInputs()
+		}
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -107,6 +116,10 @@ class InputEditora extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
+		if(this.input.length > 0){
+			this.valid = true;
+			verifyInputs()
+		}
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -141,6 +154,10 @@ class InputNomeAutor extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
+		if(this.input.length > 0){
+			this.valid = true;
+			verifyInputs()
+		}
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -168,7 +185,6 @@ class InputNomeAutor extends Input{
 				this.valid = true;
 			}
 			verifyInputs()
-			
 		})
 	}
 }
@@ -176,6 +192,10 @@ class InputCategorias extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
+		if(this.input.length > 0){
+			this.valid = true;
+			verifyInputs()
+		}
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{

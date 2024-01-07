@@ -16,8 +16,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "books")
 public class Book {
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer codigo;
@@ -33,7 +31,7 @@ public class Book {
 		)
 	public List<Category> categories = new ArrayList<Category>();
 	public Integer getCodigo() {
-		return codigo;
+		return this.codigo;
 	}
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
