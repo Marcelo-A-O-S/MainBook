@@ -5,11 +5,19 @@ import java.util.List;
 
 public class BookView {
 	
+	public Integer Codigo;
 	public String tituloLivro;
 	public List<String> categorias = new ArrayList<String>();
 	public String nomeAutor;
 	public String editora;
 	public String Isbn;
+	
+	public Integer getCodigo() {
+		return Codigo;
+	}
+	public void setCodigo(Integer codigo) {
+		Codigo = codigo;
+	}
 	public String getTituloLivro() {
 		return tituloLivro;
 	}

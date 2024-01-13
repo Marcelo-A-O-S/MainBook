@@ -5,27 +5,38 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 	<main class="w-100 h-100">
 		<section class="d-Flex flex-column p-5 align-items-center justify-content-center">
+			
 			<div class="border p-4 rounded-3">
+				<div class="d-flex justify-content-end">
+					<button class="btn border">
+				 		<a class="text-light" href="books" style="text-decoration: none;"> Retornar</a>
+					</button>
+				</div>
 				<div th:if="${sucess}" class="alert alert-success" role="alert">
 				  	<span th:text="${sucess}"></span> 
 				</div>
 				<div th:if="${erro}" class="alert alert-danger" role="alert">
 				  	<span th:text="${erro}"></span> 
 				</div>
-				<h1>Post Book</h1>
-				<form th:action="create" method="post" th:object="${bookModel}">
+				
+				<h1 th:text="${bookModel.Codigo}? 'Update Book' : 'Post Book'"></h1>
+				<form th:action="${bookModel.Codigo}? 'update' : 'create'" method="post" th:object="${bookModel}">
 					<div>
 						
 					</div>
 					<div>
+						<div th:if="${bookModel.Codigo}" class="col-md-6">
+						    <label for="tituloLivro" class="form-label">Codigo</label>
+						    <input type="text" class="form-control" id="Codigo" th:field="*{Codigo}" readonly required>
+						 </div>
 						<div class="col-md-6">
 						    <label for="tituloLivro" class="form-label">Titulo do Livro</label>
 						    <input type="text" class="form-control" id="tituloLivro" th:field="*{tituloLivro}"  placeholder="Insira o titulo do livro.." required>
 						    <div id="tituloLivroSucess" class="valid-feedback" style="color: greenyellow;">
-						      Looks good!
+						     
 						    </div>
 						    <div id="tituloLivroErro" class="invalid-feedback" style="color: orangered;">
-						      Please provide a valid city.
+						      
 						    </div>
 						  </div>
 						   <div class="col-md-6">
@@ -36,44 +47,47 @@
 						      
 						    </select>
 						    <div id="categoriasSucess" class="valid-feedback" style="color: greenyellow;">
-						      Looks good!
+						      
 						    </div>
 						    <div id="categoriasErro" class="invalid-feedback" style="color: orangered;">
-						      Please select a valid state.
+						      
 						    </div>
 						  </div>
 						  <div class="col-md-6">
 						    <label for="nomeAutor" class="form-label">Nome do Autor</label>
 						    <input type="text" class="form-control" id="nomeAutor" th:field="*{nomeAutor}" placeholder="Insira o(a) autor(a) do livro.." required>
 						    <div id="nomeAutorSucess" class="valid-feedback" style="color: greenyellow;">
-						      Looks good!
+						      
 						    </div>
 						    <div id="nomeAutorErro" class="invalid-feedback" style="color: orangered;">
-						      Please select a valid state.
+						      
 						    </div>
 						  </div>
 						  <div  class="col-md-6">
 						    <label for="editora" class="form-label">Editora</label>
 						    <input type="text" class="form-control" id="editora" th:field="*{editora}"  placeholder="Insira a editora do livro.." required>
 						    <div id="editoraSucess" class="valid-feedback" style="color: greenyellow;">
-						      Looks good!
+						      
 						    </div>
 						    <div id="editoraErro" class="invalid-feedback" style="color: orangered;">
-						      Please select a valid state.
+						      
 						    </div>
 						  </div>
 						  <div class="col-md-6">
 						    <label for="isbn" class="form-label">ISBN(International Standard Book Number)</label>
 						    <input type="text" maxlength="17" class="form-control" id="isbn" th:field="*{Isbn}" placeholder="Insira o codigo do livro.." required>
 						    <div id="isbnSucess" class="valid-feedback" style="color: greenyellow;">
-						      Looks good!
+						      
 						    </div>
 						    <div id="isbnErro" class="invalid-feedback" style="color: orangered;">
-						      Please select a valid state.
+						     
 						    </div>
 						  </div>
 					</div>
-					<div class="d-flex justify-content-end p-3">
+					<div class="d-flex justify-content-end p-3 gap-2">
+						<button class="btn border">
+					 		<a class="text-light" href="books" style="text-decoration: none;">Cancelar</a>
+						</button>
 						<button id="salvarBook" class="btn border text-light" type="submit" disabled >Salvar</button>
 					</div>
 				</form>

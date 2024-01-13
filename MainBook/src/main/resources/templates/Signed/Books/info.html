@@ -4,8 +4,17 @@
 <body class="background-main">
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 <main class="w-100 vh-100">
-	<section>
-		
+	<section class="d-Flex flex-column p-5 align-items-center justify-content-center">
+		<div class="d-flex justify-content-end">
+			<button class="btn border">
+		 		<a class="text-light" href="books" style="text-decoration: none;"> Retornar</a>
+			</button>
+		</div>						
+		<div th:object="${infoBook}" class="">
+			<h1 th:text="*{tituloLivro}"></h1>
+			<p>Editora: <span th:text="*{editora}"></span></p>
+			<p>Autor(a): <span th:text="*{nomeAutor}"></span></p>
+		</div>
 	</section>
 </main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>

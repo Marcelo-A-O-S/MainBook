@@ -13,10 +13,6 @@ class InpuIsbn extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
-		if(this.input.length > 0){
-			this.valid = true;
-			verifyInputs()
-		}
 		
 	}
 	EventInput(){
@@ -71,15 +67,27 @@ class InpuIsbn extends Input{
 			verifyInputs()
 		})
 	}
+	VerifyEmpty(){
+		if(this.input.value !== "" && this.input.value.length === 17){
+			this.input.classList.toggle("is-valid")
+			const elementSucess = document.createElement("span");
+			var messageSucess = document.createTextNode("");
+			messageSucess = document.createTextNode("Pode prosseguir!")
+			elementSucess.appendChild(messageSucess);
+			this.sucess.appendChild(elementSucess);
+			this.valid = true;
+			this.validValue == true
+		}else{
+			this.valid = false;
+			this.validValue == false;
+		}
+	}
 }
 class InputTituloLivro extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
-		if(this.input.length > 0){
-			this.valid = true;
-			verifyInputs()
-		}
+		
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -111,15 +119,25 @@ class InputTituloLivro extends Input{
 			verifyInputs()
 		})
 	}
+	VerifyEmpty(){
+		if(this.input.value !== ""){
+			this.input.classList.toggle("is-valid")
+			const elementSucess = document.createElement("span");
+			var messageSucess = document.createTextNode("");
+			elementSucess.classList.toggle("primary")
+			messageSucess = document.createTextNode("Pode prosseguir!")
+			elementSucess.appendChild(messageSucess);
+			this.sucess.appendChild(elementSucess);
+			this.valid = true;
+		}else{
+			this.valid = false;
+		}
+	}
 }
 class InputEditora extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
-		if(this.input.length > 0){
-			this.valid = true;
-			verifyInputs()
-		}
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -148,16 +166,26 @@ class InputEditora extends Input{
 			}
 			verifyInputs()
 		})
+	}
+	VerifyEmpty(){
+		if(this.input.value !== ""){
+			this.input.classList.toggle("is-valid")
+			const elementSucess = document.createElement("span");
+			var messageSucess = document.createTextNode("");
+			messageSucess = document.createTextNode("Pode prosseguir!")
+			elementSucess.appendChild(messageSucess);
+			this.sucess.appendChild(elementSucess);
+			this.valid = true;
+		}else{
+			this.valid = false;
+		}
 	}
 }
 class InputNomeAutor extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
-		if(this.input.length > 0){
-			this.valid = true;
-			verifyInputs()
-		}
+
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -187,15 +215,24 @@ class InputNomeAutor extends Input{
 			verifyInputs()
 		})
 	}
+	VerifyEmpty(){
+		if(this.input.value !== ""){
+			this.input.classList.toggle("is-valid")
+			const elementSucess = document.createElement("span");
+			var messageSucess = document.createTextNode("");
+			messageSucess = document.createTextNode("Pode prosseguir!")
+			elementSucess.appendChild(messageSucess);
+			this.sucess.appendChild(elementSucess);
+			this.valid = true;
+		}else{
+			this.valid = false;
+		}
+	}
 }
 class InputCategorias extends Input{
 	valid;
 	constructor(inputId, erroId, sucessId){
 		super(inputId, erroId, sucessId)
-		if(this.input.length > 0){
-			this.valid = true;
-			verifyInputs()
-		}
 	}
 	EventInput(){
 		this.input.addEventListener("input",(e)=>{
@@ -227,10 +264,25 @@ class InputCategorias extends Input{
 			}
 			verifyInputs()
 		})
+		
 	}
+	
 	EventChange(){
 		this.input.addEventListener("change",(e)=>{
 		})
+	}
+	VerifyEmpty(){
+			if(this.input.value !== ""){
+				this.input.classList.toggle("is-valid")
+				const elementSucess = document.createElement("span");
+				var messageSucess = document.createTextNode("");
+				messageSucess = document.createTextNode("Pode prosseguir!")
+				elementSucess.appendChild(messageSucess);
+				this.sucess.appendChild(elementSucess);
+				this.valid = true;
+			}else{
+			this.valid = false;
+		}
 	}
 }
 var elementTituloLivro = new InputTituloLivro("tituloLivro","tituloLivroErro","tituloLivroSucess")
@@ -243,6 +295,11 @@ elementIsbn.EventInput();
 elementEditora.EventInput();
 elementTituloLivro.EventInput();
 elementNomeAutor.EventInput();
+elementCategorias.VerifyEmpty();
+elementIsbn.VerifyEmpty();
+elementEditora.VerifyEmpty();
+elementTituloLivro.VerifyEmpty();
+elementNomeAutor.VerifyEmpty();
 var btnSalvarBook = document.getElementById("salvarBook");
 function verifyInputs(){
 	if(elementCategorias.valid === true && elementEditora.valid === true && elementIsbn.valid === true && elementNomeAutor.valid === true && elementTituloLivro.valid === true){
@@ -251,3 +308,4 @@ function verifyInputs(){
 		btnSalvarBook.disabled = true
 	}
 }
+verifyInputs();

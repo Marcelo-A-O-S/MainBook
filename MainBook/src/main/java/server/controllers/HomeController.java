@@ -20,6 +20,7 @@ import Server.ViewModels.LoginView;
 import Server.ViewModels.RegisterView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
@@ -85,6 +86,14 @@ public class HomeController {
 		user = new User(0, register.username, register.email,passwordEncoder.encode(register.password), true, roleUser);
 		this.userServices.salvar(user);
 		mv.setViewName("redirect:/login");
+		return mv;
+	}
+	@GetMapping("/Logout")
+	public ModelAndView Logout(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		session.removeAttribute("usersession");
+		mv.setViewName("redirect:/logout");
 		return mv;
 	}
 }
