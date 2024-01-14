@@ -66,20 +66,31 @@ public class SignedController {
 		mv.setViewName("Signed/Books/index");
 		return mv;
 	}
-	@DeleteMapping("delete")
-	public ModelAndView DeleteBookParamId(@RequestParam(required = true) Integer param) {
+	@GetMapping("delete")
+	public ModelAndView DeleteBookParamId(@RequestParam(required = true) Integer param, RedirectAttributes redirect) {
 		ModelAndView mv = new ModelAndView();
 		Book book = bs.buscarPorId(param);
 		if(book != null) {
 			bs.deletar(book);
-			mv.addObject("sucess", "Deletado com sucesso!");
-			mv.setViewName("Signed/Books/index");
+			mv.setViewName("redirect:/signed/books");
+			redirect.addFlashAttribute("sucess", "Livro deletado com sucesso!");
 			return mv;
+
 		}
 		mv.addObject("erro", "Não existe livro com essa identificação");
 		mv.setViewName("Signed/Books/index");
 		return mv;
 	}
+
+	/*
+	 * @DeleteMapping("delete") public ModelAndView
+	 * DeleteBookParamId(@RequestParam(required = true) Integer param) {
+	 * ModelAndView mv = new ModelAndView(); Book book = bs.buscarPorId(param);
+	 * if(book != null) { bs.deletar(book); mv.addObject("sucess",
+	 * "Deletado com sucesso!"); mv.setViewName("Signed/Books/index"); return mv; }
+	 * mv.addObject("erro", "Não existe livro com essa identificação");
+	 * mv.setViewName("Signed/Books/index"); return mv; }
+	 */
 	@DeleteMapping("delete/{id}")
 	public ModelAndView DeleteBookPathId(@PathVariable(required = true) Integer id) {
 		ModelAndView mv = new ModelAndView();
@@ -95,7 +106,7 @@ public class SignedController {
 		return mv;
 	}
 	@GetMapping("create")
-	public ModelAndView Form(@ModelAttribute("sucess") String sucess, @ModelAttribute("erro") String erro, @RequestParam() Integer param) {
+	public ModelAndView Form(@ModelAttribute("sucess") String sucess, @ModelAttribute("erro") String erro, @RequestParam(required = false) Integer param) {
 		ModelAndView mv = new ModelAndView();
 		if(sucess != null && !sucess.isEmpty()) {
 			mv.addObject("sucess", sucess);
